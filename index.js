@@ -34,7 +34,7 @@ class PgQueryStream extends Readable {
       return false
     }
     this._reading = true
-    const readAmount = Math.max(size, this.batchSize)
+    const readAmount = Math.min(size, this.batchSize)
     this.cursor.read(readAmount, (err, rows) => {
       if (this._closed) {
         return
